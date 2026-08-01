@@ -71,18 +71,17 @@ const Home = () => {
       };
 
         const fetchTopRated = async() =>{
-       const {data:{results}} = await axios.get(`${url}}/movie/${topRated}?api_key=${apiKey}`);
+       const {data:{results}} = await axios.get(`${url}/movie/${topRated}?api_key=${apiKey}`);
       
-      setTopRatedMovies(results)
+       setTopRatedMovies(results);
 
 
       };
 
       const getAllGenre = async() =>{
-       const {data:{genres}} = await axios.get(`${url}}/genre/movie/list${topRated}?api_key=${apiKey}`);
+       const {data:{genres}} = await axios.get(`${url}/genre/movie/list${topRated}?api_key=${apiKey}`);
       
       setGenre(genres);
-      console.log(genres);
 
       };
 
@@ -103,7 +102,7 @@ const Home = () => {
   return (
     <section className="home">
         <div className="banner" style={{
-        backgroundImage: popularMovies[0]? `url(${`${imgUrl}/${popularMovies[0].poster_path}`})`:"rgb(16, 16, 16)",
+        backgroundImage: popularMovies[0]? `url(${`${imgUrl}/${popularMovies[0].backdrop_path}`})`:"rgb(16, 16, 16)",
       }}>
 
         {
@@ -122,7 +121,7 @@ const Home = () => {
         </div>
         </div>
 
-        <Row title={"Upcoming "} arr={upcomingMovies}/>
+        <Row title={"upcoming" } arr={upcomingMovies}/>
         <Row title={"Now Playing "} arr={nowPlayingMovies}/>
         <Row title={"Popular "} arr={popularMovies}/>
         <Row title={"Top Rated "} arr={topRatedMovies}/>
@@ -132,7 +131,6 @@ const Home = () => {
                 <Link key={item.id} to={`/genre/${item.id}`}>{item.name} </Link>
             ))}
         </div>
-
     </section>
   );
 };
